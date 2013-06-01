@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -e
+[ -n "$PYENV_DEBUG" ] && set -x
+
+if [ -z "$PYENV_ROOT" ]; then
+  PYENV_ROOT="${HOME}/.pyenv"
+fi
+
+checkout() {
+  local repo="$1"
+  local dest="$2"
+  [ -d "${dest}" ] || git clone "${repo}" "${dest}"
+}
+
+install() {
+  local repo="$1"
+  checkout "${repo}" "${PYENV_ROOT}"
+}
+
+install_plugin() {
+  local repo="$1"
+  local name="$(basename "${repo}" ".git")"
+  checkout "${repo}" "${PYENV_ROOT}/plugins/${name}"
+}
+
+if ! command -v git 1>/dev/null 2>&1; then
+  echo "pyenv: Git is not installed, can't continue." 1>&2
+  exit 1
+fi
+
+install "git://github.com/yyuu/pyenv.git"
+install_plugin "git://github.com/yyuu/pyenv-pip-migrate.git"
+install_plugin "git://github.com/yyuu/pyenv-pip-rehash"
+install_plugin "git://github.com/yyuu/pyenv-update"
+install_plugin "git://github.com/yyuu/pyenv-virtualenv"
+
+if ! command -v pyenv 1>/dev/null 2>&1; then
+  cat <<EOS
+Seems you still have not added 'pyenv' to the load path:
+
+export PYENV_ROOT=\"\${HOME}/.pyenv\"
+
+if [ -d \"\${PYENV_ROOT}\" ]; then
+  export PATH=\"\${PYENV_ROOT}/bin:\${PATH}\"
+  eval \"\$(pyenv init -)\"
+fi
+EOS
+fi
