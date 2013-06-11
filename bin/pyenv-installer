@@ -30,6 +30,7 @@ if ! command -v git 1>/dev/null 2>&1; then
 fi
 
 install "git://github.com/yyuu/pyenv.git"
+install_plugin "git://github.com/yyuu/pyenv-doctor.git"
 install_plugin "git://github.com/yyuu/pyenv-installer.git"
 install_plugin "git://github.com/yyuu/pyenv-pip-migrate.git"
 install_plugin "git://github.com/yyuu/pyenv-pip-rehash"
