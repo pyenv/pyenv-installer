@@ -1,11 +1,44 @@
 #!/usr/bin/env bash
 
 set -e
-[ -n "$PYENV_DEBUG" ] && set -x
 
-if [ -z "$PYENV_ROOT" ]; then
-  PYENV_ROOT="${HOME}/.pyenv"
-fi
+# Defaults
+export PYENV_ROOT="$HOME/.pyenv"
+
+usage() {
+  cat <<EOS
+  Usage: $0 [-h] [-d] [-p <prefix>]
+
+  -h            Print this help message and exit
+  -d            Run in debug mode
+  -p <prefix>   Specify installation directoy prefix. pyenv will
+                get installed in <prefix>/.pyenv. Default value
+                is $HOME.
+EOS
+}
+
+while getopts ":hp:d" opt; do
+  case $opt in
+    h)
+      usage
+      exit 0
+      ;;
+    p)
+      export PYENV_ROOT="$OPTARG/.pyenv"
+      ;;
+    d)
+      set -x
+      ;;
+    ?)
+      usage
+      exit 1
+      ;;
+    :)
+      usage
+      exit 1
+      ;;
+  esac
+done
 
 checkout() {
   local repo="$1"
@@ -41,11 +74,11 @@ if ! command -v pyenv 1>/dev/null 2>&1; then
   cat <<EOS
 Seems you still have not added 'pyenv' to the load path:
 
-export PYENV_ROOT=\"\${HOME}/.pyenv\"
+export PYENV_ROOT="${PYENV_ROOT}"
 
-if [ -d \"\${PYENV_ROOT}\" ]; then
-  export PATH=\"\${PYENV_ROOT}/bin:\${PATH}\"
-  eval \"\$(pyenv init -)\"
+if [ -d "${PYENV_ROOT}" ]; then
+  export PATH="${PYENV_ROOT}/bin:\${PATH}"
+  eval "\$(pyenv init -)"
 fi
 EOS
 fi
