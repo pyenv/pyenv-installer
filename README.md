@@ -10,6 +10,11 @@ Install [pyenv](https://github.com/yyuu/pyenv) and friends by running:
 
     $ curl https://raw.github.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
+Default installation directory is `$HOME/.pyenv`, for advanced
+installation options such as selecting different installation 
+directory, just download the script and run with `-h` for options
+description.
+
 ## Updating
 
 To update pyenv and friends by running:
