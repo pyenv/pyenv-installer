@@ -4,6 +4,7 @@ set -e
 
 # Defaults
 export PYENV_ROOT="$HOME/.pyenv"
+DEBUG=$PYENV_DEBUG
 
 usage() {
   cat <<EOS
@@ -27,7 +28,7 @@ while getopts ":hp:d" opt; do
       export PYENV_ROOT="$OPTARG/.pyenv"
       ;;
     d)
-      set -x
+      DEBUG="TRUE"
       ;;
     ?)
       usage
@@ -62,6 +63,7 @@ if ! command -v git 1>/dev/null 2>&1; then
   exit 1
 fi
 
+[ -n "$DEBUG" ] && set -x
 install "https://github.com/yyuu/pyenv.git"
 install_plugin "https://github.com/yyuu/pyenv-doctor.git"
 install_plugin "https://github.com/yyuu/pyenv-installer.git"
@@ -82,3 +84,4 @@ if [ -d "${PYENV_ROOT}" ]; then
 fi
 EOS
 fi
+
