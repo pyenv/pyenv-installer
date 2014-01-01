@@ -35,6 +35,7 @@ install_plugin "https://github.com/yyuu/pyenv-installer.git"
 install_plugin "https://github.com/yyuu/pyenv-pip-migrate.git"
 install_plugin "https://github.com/yyuu/pyenv-pip-rehash.git"
 install_plugin "https://github.com/yyuu/pyenv-update.git"
+install_plugin "https://github.com/yyuu/pyenv-version-ext.git"
 install_plugin "https://github.com/yyuu/pyenv-virtualenv.git"
 
 if ! command -v pyenv 1>/dev/null 2>&1; then
