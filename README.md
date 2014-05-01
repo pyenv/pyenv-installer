@@ -8,7 +8,7 @@ This plugin was inspired from [rbenv-installer](https://github.com/fesplugas/rbe
 
 Install [pyenv](https://github.com/yyuu/pyenv) and friends by running:
 
-    $ curl https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
 ## Updating
 
