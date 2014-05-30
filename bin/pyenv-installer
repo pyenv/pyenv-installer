@@ -8,20 +8,7 @@ if [ -z "$PYENV_ROOT" ]; then
 fi
 
 checkout() {
-  local repo="$1"
-  local dest="$2"
-  [ -d "${dest}" ] || git clone "${repo}" "${dest}"
-}
-
-install() {
-  local repo="$1"
-  checkout "${repo}" "${PYENV_ROOT}"
-}
-
-install_plugin() {
-  local repo="$1"
-  local name="$(basename "${repo}" ".git")"
-  checkout "${repo}" "${PYENV_ROOT}/plugins/${name}"
+  [ -d "$2" ] || git clone "$1" "$2"
 }
 
 if ! command -v git 1>/dev/null 2>&1; then
@@ -29,14 +16,14 @@ if ! command -v git 1>/dev/null 2>&1; then
   exit 1
 fi
 
-install "https://github.com/yyuu/pyenv.git"
-install_plugin "https://github.com/yyuu/pyenv-doctor.git"
-install_plugin "https://github.com/yyuu/pyenv-installer.git"
-install_plugin "https://github.com/yyuu/pyenv-pip-migrate.git"
-install_plugin "https://github.com/yyuu/pyenv-pip-rehash.git"
-install_plugin "https://github.com/yyuu/pyenv-update.git"
-install_plugin "https://github.com/yyuu/pyenv-version-ext.git"
-install_plugin "https://github.com/yyuu/pyenv-virtualenv.git"
+checkout "https://github.com/yyuu/pyenv.git"            "${PYENV_ROOT}"
+checkout "https://github.com/yyuu/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"
+checkout "https://github.com/yyuu/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"
+checkout "https://github.com/yyuu/pyenv-pip-migrate.git" "${PYENV_ROOT}/plugins/pyenv-pip-migrate"
+checkout "https://github.com/yyuu/pyenv-pip-rehash.git" "${PYENV_ROOT}/plugins/pyenv-pip-rehash"
+checkout "https://github.com/yyuu/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"
+checkout "https://github.com/yyuu/pyenv-version-ext.git" "${PYENV_ROOT}/plugins/pyenv-version-ext"
+checkout "https://github.com/yyuu/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
 
 if ! command -v pyenv 1>/dev/null 2>&1; then
   cat <<EOS
