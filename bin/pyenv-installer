@@ -33,11 +33,10 @@ fi
 checkout "https://github.com/yyuu/pyenv.git"            "${PYENV_ROOT}"
 checkout "https://github.com/yyuu/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"
 checkout "https://github.com/yyuu/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"
-checkout "https://github.com/yyuu/pyenv-pip-migrate.git" "${PYENV_ROOT}/plugins/pyenv-pip-migrate"
 checkout "https://github.com/yyuu/pyenv-pip-rehash.git" "${PYENV_ROOT}/plugins/pyenv-pip-rehash"
 checkout "https://github.com/yyuu/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"
-checkout "https://github.com/yyuu/pyenv-version-ext.git" "${PYENV_ROOT}/plugins/pyenv-version-ext"
 checkout "https://github.com/yyuu/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
+checkout "https://github.com/yyuu/pyenv-which-ext.git"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
 
 if ! command -v pyenv 1>/dev/null; then
   { echo
