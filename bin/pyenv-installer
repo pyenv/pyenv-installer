@@ -72,7 +72,7 @@ if ! command -v pyenv 1>/dev/null; then
       echo 'status --is-interactive; and . (pyenv init -|psub)'
       ;;
     * )
-      echo "export PATH=\"\$HOME/.pyenv/bin:\$PATH"
+      echo "export PATH=\"\$HOME/.pyenv/bin:\$PATH\""
       echo "eval \"\$(pyenv init -)\""
       ;;
     esac
