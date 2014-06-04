@@ -70,10 +70,12 @@ if ! command -v pyenv 1>/dev/null; then
     fish )
       echo "set -x PATH \"\$HOME/.pyenv/bin\" \$PATH"
       echo 'status --is-interactive; and . (pyenv init -|psub)'
+      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
       ;;
     * )
       echo "export PATH=\"\$HOME/.pyenv/bin:\$PATH\""
       echo "eval \"\$(pyenv init -)\""
+      echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
     esac
   } >&2
