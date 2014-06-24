@@ -36,6 +36,7 @@ checkout "https://github.com/yyuu/pyenv-installer.git"  "${PYENV_ROOT}/plugins/p
 checkout "https://github.com/yyuu/pyenv-pip-rehash.git" "${PYENV_ROOT}/plugins/pyenv-pip-rehash"
 checkout "https://github.com/yyuu/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"
 checkout "https://github.com/yyuu/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
+checkout "https://github.com/yyuu/pyenv-virtualenvwrapper.git" "${PYENV_ROOT}/plugins/pyenv-virtualenvwrapper"
 checkout "https://github.com/yyuu/pyenv-which-ext.git"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
 
 if ! command -v pyenv 1>/dev/null; then
