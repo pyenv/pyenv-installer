@@ -16,6 +16,12 @@ To update pyenv and friends by running:
 
     $ pyenv update
 
+## Uninstallation
+
+Everything of `pyenv` are installed within `$PYENV_ROOT` (default: `~/.pyenv`). To uninstall, just removing it.
+
+    $ rm -fr ~/.pyenv
+
 ## Version History
 
 #### 20130601
