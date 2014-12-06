@@ -3,7 +3,7 @@
 This is a little lab to show that pyenv can be made installable with standard
 Python packaging tools (a.k.a. pip).
 
-It turns out, that plugging the installer into pip is borderline trivial. The actual challenges are getting that tested in all kinds of environemnts and automating the shell integration and installing the actual dependencies for compiling Python.
+It turns out, that plugging the installer into pip is borderline trivial. The actual challenges are getting that tested in all kinds of environemnts and automating the shell integration and installing the actual dependencies for compiling Python (but this is not automated by the existing installer yet either, so this should be done there (if at all)).
 
 ## Testing locally
 
