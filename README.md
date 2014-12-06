@@ -7,6 +7,8 @@ It turns out, that plugging the installer into pip is borderline trivial. The ac
 
 ## Testing locally
 
+If you don't know vagrant yet: just [install the latest package](https://www.vagrantup.com/downloads.html), open a shell in this project directory and say 
+
     $ vagrant up
     $ vagrant ssh
 
@@ -19,6 +21,9 @@ The project (this repository) is mapped into the vagrant image at /vagrant
     $ echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
     $ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
     $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+    $ source ~/.bashrc
+    
+Done. pyenv is installed and responding.
 
 ## The real problems
 
