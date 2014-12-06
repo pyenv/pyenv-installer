@@ -1,54 +1,29 @@
-# pyenv installer
+# Proof of conecpt: setup.py enhanced pyenv installer
 
-This tools is used to install `pyenv` and friends.
+This is a little lab to show that pyenv can be made installable with standard
+Python packaging tools (a.k.a. pip).
 
-This plugin was inspired from [rbenv-installer](https://github.com/fesplugas/rbenv-installer).
+It turns out, that plugging the installer into pip is borderline trivial. The actual challenges are getting that tested in all kinds of environemnts and automating the shell integration and installing the actual dependencies for compiling Python.
 
-## Installation
+## Testing locally
 
-Install [pyenv](https://github.com/yyuu/pyenv) and friends by running:
+    $ vagrant up
+    $ vagrant ssh
 
-    $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+Now you are inside the vagrant container and your prompt should like something like 'vagrant@vagrant-ubuntu-trusty-64:~$' - the project is mapped into the vagrant image at /vagrant
 
-## Updating
+    $ cd /vagrant
+    $ python setup.py install
+    $ echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+    $ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+    $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 
-To update pyenv and friends by running:
+## The real problems
 
-    $ pyenv update
+* automate shell integration (a.k.a adding stuff to the correct user profile without pissing them off)
 
-## Uninstallation
+* automate dependency installations (a.k.a automate solutions for [common build problems](https://github.com/yyuu/pyenv/wiki/Common-build-problems))
 
-Everything of `pyenv` are installed within `$PYENV_ROOT` (default: `~/.pyenv`). To uninstall, just removing it.
+## Todo test it on TestPyPI
 
-    $ rm -fr ~/.pyenv
-
-## Version History
-
-#### 20130601
-
- * Initial public release.
-
-### License
-
-(The MIT License)
-
-* Copyright (c) 2013 Yamashita, Yuu
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+* register it on [testPyPi](https://wiki.python.org/moin/TestPyPI) test and try from there

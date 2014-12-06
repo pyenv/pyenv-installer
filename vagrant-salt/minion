@@ -1,0 +1,3 @@
+file_client: local
+log_file: /var/log/salt/minion
+log_level: debug
