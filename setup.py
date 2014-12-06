@@ -24,5 +24,4 @@ distutils.core.setup(
         'Topic :: System :: Systems Administration',
         'Topic :: Utilities',
     ],
-
 )
