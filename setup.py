@@ -1,26 +1,28 @@
-"""Proof of concept for making pyenv pip installable.
-
-Can be used as a 'real' script.
-
-Install locally and editable: `pip install --editable .`
-
-Uninstall: `pip uninstall update-bridge-tool`
-
-"""
+"""Proof of concept for making pyenv pip installable."""
 import distutils.core
 from distutils.command.install import install
-import os
 import subprocess
 
 
-class my_install(install):
+class PyenvInstall(install):
     def run(self):
-        #install.run(self)  # no python no run?
-        print(os.getcwd())
         print(subprocess.check_output(['bash', 'bin/pyenv-installer']))
 
+
 distutils.core.setup(
+    cmdclass=dict(install=PyenvInstall),
     name="pyenv",
-    version='0.0.0.1',
-    cmdclass=dict(install=my_install)
+    version='0.0.1',  # todo
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: POSIX',
+        'Programming Language :: Unix Shell',
+        'Topic :: Software Development :: Interpreters',
+        'Topic :: System :: Systems Administration',
+        'Topic :: Utilities',
+    ],
+
 )
