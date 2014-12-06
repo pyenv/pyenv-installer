@@ -1,3 +1,5 @@
 *.swo
 *.swp
 .idea/*
+.vagrant/*
+pyenv.egg-info/*
