@@ -25,12 +25,14 @@ The project (this repository) is mapped into the vagrant image at /vagrant
     
 Done. pyenv is installed and responding.
 
-## The real problems
+## It's on TestPyPI
 
-* automate shell integration (a.k.a adding stuff to the correct user profile without pissing them off)
+`pip install --egg -i https://testpypi.python.org/pypi pyenv`
 
-* automate dependency installations (a.k.a automate solutions for [common build problems](https://github.com/yyuu/pyenv/wiki/Common-build-problems))
+Anybody know how to get rid of the `--egg` param?
 
-## Todo test it on TestPyPI
+## The real problems (inherited from the original installer)
 
-* register it on [testPyPi](https://wiki.python.org/moin/TestPyPI) test and try from there
+* shell integration not automated
+
+* dependency installation for building python version not automated - see [common build problems](https://github.com/yyuu/pyenv/wiki/Common-build-problems))

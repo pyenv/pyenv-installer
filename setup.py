@@ -10,7 +10,6 @@ class PyenvInstall(install):
 
 
 distutils.core.setup(
-    cmdclass=dict(install=PyenvInstall),
     name="pyenv",
     version='0.0.1',  # todo
     classifiers=[
@@ -24,4 +23,6 @@ distutils.core.setup(
         'Topic :: System :: Systems Administration',
         'Topic :: Utilities',
     ],
+    cmdclass=dict(install=PyenvInstall),
+    # data_files=[('bin', ['bm/b1.gif', 'bm/b2.gif'])]
 )
