@@ -1,4 +1,4 @@
-# Proof of conecpt: setup.py enhanced pyenv installer
+# Proof of concept: setup.py enhanced pyenv installer
 
 This is a little lab to show that pyenv can be made installable with standard
 Python packaging tools (a.k.a. pip).
