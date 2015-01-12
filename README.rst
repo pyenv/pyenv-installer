@@ -1,51 +1,52 @@
 pyenv installer
 ===============
 
-This tools is used to install ``pyenv`` and friends.
+This tool installs ``pyenv`` and friends. It is inspired by `rbenv-installer <https://github.com/fesplugas/rbenv-installer>`__.
 
-This plugin was inspired from
-`rbenv-installer <https://github.com/fesplugas/rbenv-installer>`__.
+Installation / Update / Uninstallation
+--------------------------------------
 
-Installation
-------------
+There are two ways to install `pyenv <https://github.com/yyuu/pyenv>`__.
+The PyPi support is not tested by many users yet, so the
+direct way ist still recommended if you want to play it safe.
 
-Install `pyenv <https://github.com/yyuu/pyenv>`__ and friends by
-running:
+Github way (recommended)
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
+Install::
 
     $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
-
-**NEW**: ``pyenv`` is on `PyPi <https://pypi.python.org/pypi/pyenv>` now:
-
-``pip install --egg pyenv``
-
-
-Updating
---------
-
-To update pyenv and friends by running:
-
-::
+Update::
 
     $ pyenv update
 
-Uninstallation
---------------
-
-Everything of ``pyenv`` are installed within ``$PYENV_ROOT`` (default:
-``~/.pyenv``). To uninstall, just removing it.
-
-::
+Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
+(default: ``~/.pyenv``). To uninstall, just remove it::
 
     $ rm -fr ~/.pyenv
+
+PyPi way
+~~~~~~~~
+
+**WARNING** note the necessary use of the --egg parameter
+
+Install::
+
+    $ pip install --egg pyenv
+
+
+In the current implementation updates and uninstallation works exactly like
+the github way.
+
+**NOTE**: ``pip freeze`` will not show pyenv as installed as this tool is just a
+thin wrapper around the shell install script.
 
 Development and testing
 -----------------------
 
-This project contains a setup for vagrant to test the installer inside a
-vagrant managed virtual image.
+The `project on github <https://github.com/yyuu/pyenv-installer>`__ contains
+a setup for vagrant to test the installer inside a vagrant managed virtual image.
 
 If you don't know vagrant yet: just `install the latest
 package <https://www.vagrantup.com/downloads.html>`__, open a shell in
@@ -77,17 +78,24 @@ Pyenv should be installed and responding now.
 Version History
 ---------------
 
+20150113
+~~~~~~~~
+
+-  Initial release on PyPi.
+
 20130601
-^^^^^^^^
+~~~~~~~~
 
 -  Initial public release.
 
+
 License
-~~~~~~~
+-------
 
 (The MIT License)
 
--  Copyright (c) 2013 Yamashita, Yuu
+-  Copyright (c) 2013-2015 Yamashita, Yuu
+-  Copyright (c) 2015 Oliver Bestwalter
 
 | Permission is hereby granted, free of charge, to any person obtaining
 | a copy of this software and associated documentation files (the
