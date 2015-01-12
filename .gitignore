@@ -5,3 +5,4 @@
 .vagrant/*
 dist/*
 pyenv.egg-info/*
+MANIFEST
