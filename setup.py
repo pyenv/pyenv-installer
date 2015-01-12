@@ -1,4 +1,3 @@
-"""Proof of concept for making pyenv pip installable."""
 import distutils.core
 from distutils.command.install import install
 import subprocess
@@ -11,7 +10,7 @@ class PyenvInstall(install):
 
 distutils.core.setup(
     name="pyenv",
-    version='0.0.1',  # todo
+    version='20150113',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
@@ -24,5 +23,4 @@ distutils.core.setup(
         'Topic :: Utilities',
     ],
     cmdclass=dict(install=PyenvInstall),
-    # data_files=[('bin', ['bm/b1.gif', 'bm/b2.gif'])]
 )
