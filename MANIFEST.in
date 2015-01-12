@@ -1,4 +1,3 @@
-LICENSE
-README.rst
-setup.py
-bin/pyenv-installer
+include LICENSE
+include README.rst
+recursive-include bin *
