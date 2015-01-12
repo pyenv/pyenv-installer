@@ -11,7 +11,7 @@ with open('README.rst') as file:
     long_description = file.read()
 
 distutils.core.setup(
-    version='20150113.1',
+    version='20150113',
     name='pyenv',
     author='Yamashita, Yuu',
     url='https://github.com/yyuu/pyenv-installer',
