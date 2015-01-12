@@ -95,7 +95,7 @@ License
 (The MIT License)
 
 -  Copyright (c) 2013-2015 Yamashita, Yuu
-                 2015 Oliver Bestwalter
+-                2015 Oliver Bestwalter (PyPi support)
 
 | Permission is hereby granted, free of charge, to any person obtaining
 | a copy of this software and associated documentation files (the
