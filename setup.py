@@ -15,7 +15,7 @@ distutils.core.setup(
     name='pyenv',
     author='Yamashita, Yuu',
     url='https://github.com/yyuu/pyenv-installer',
-    description='Installs pyenv and friends',
+    description='Tool to install pyenv and friends',
     long_description=long_description,
     license='MIT',
     platforms=['UNIX'],
