@@ -16,6 +16,12 @@ running:
 
     $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
+
+**NEW**: ``pyenv`` is on `PyPi <https://pypi.python.org/pypi/pyenv>` now:
+
+``pip install --egg pyenv``
+
+
 Updating
 --------
 
