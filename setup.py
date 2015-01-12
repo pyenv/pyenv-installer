@@ -9,8 +9,9 @@ class PyenvInstall(install):
 
 
 distutils.core.setup(
-    name="pyenv",
+    name='pyenv',
     version='20150113',
+    description='Installs pyenv and friends',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
