@@ -30,6 +30,11 @@ if ! command -v git 1>/dev/null 2>&1; then
   exit 1
 fi
 
+if [ -d "$PYENV_ROOT" ]; then
+    printf '%s\n' "Removing Lock ($PYENV_ROOT)"
+    rm -rf "$PYENV_ROOT"
+fi
+
 checkout "git://github.com/yyuu/pyenv.git"            "${PYENV_ROOT}"
 checkout "git://github.com/yyuu/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"
 checkout "git://github.com/yyuu/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"
