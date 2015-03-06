@@ -30,13 +30,19 @@ if ! command -v git 1>/dev/null 2>&1; then
   exit 1
 fi
 
-checkout "git://github.com/yyuu/pyenv.git"            "${PYENV_ROOT}"
-checkout "git://github.com/yyuu/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"
-checkout "git://github.com/yyuu/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"
-checkout "git://github.com/yyuu/pyenv-pip-rehash.git" "${PYENV_ROOT}/plugins/pyenv-pip-rehash"
-checkout "git://github.com/yyuu/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"
-checkout "git://github.com/yyuu/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
-checkout "git://github.com/yyuu/pyenv-which-ext.git"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
+if [ -n "${USE_HTTPS}" ]; then
+  GITHUB="https://github.com"
+else
+  GITHUB="git://github.com"
+fi
+
+checkout "${GITHUB}/yyuu/pyenv.git"            "${PYENV_ROOT}"
+checkout "${GITHUB}/yyuu/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"
+checkout "${GITHUB}/yyuu/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"
+checkout "${GITHUB}/yyuu/pyenv-pip-rehash.git" "${PYENV_ROOT}/plugins/pyenv-pip-rehash"
+checkout "${GITHUB}/yyuu/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"
+checkout "${GITHUB}/yyuu/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
+checkout "${GITHUB}/yyuu/pyenv-which-ext.git"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
 
 if ! command -v pyenv 1>/dev/null; then
   { echo
