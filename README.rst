@@ -8,7 +8,7 @@ Installation / Update / Uninstallation
 
 There are two ways to install `pyenv <https://github.com/yyuu/pyenv>`__.
 The PyPi support is not tested by many users yet, so the
-direct way ist still recommended if you want to play it safe.
+direct way is still recommended if you want to play it safe.
 
 Github way (recommended)
 ~~~~~~~~~~~~~~~~~~~~~~~~
