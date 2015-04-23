@@ -29,7 +29,8 @@ Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
 PyPi way
 ~~~~~~~~
 
-**WARNING** note the necessary use of the --egg parameter
+**WARNING** still a very hacky proof of concept. Does not work with Python 3 at all yet and in Python 2 only with 
+the use of the --egg parameter.
 
 Install::
 
