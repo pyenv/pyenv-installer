@@ -72,14 +72,16 @@ if ! command -v pyenv 1>/dev/null; then
   { echo "# Load pyenv automatically by adding"
     echo "# the following to ${profile}:"
     echo
+    pyenv_bin=${PYENV_ROOT-$HOME}/bin
+    pyenv_bin=${pyenv_bin/$HOME/'$HOME'}
     case "$shell" in
     fish )
-      echo "set -x PATH \"\$HOME/.pyenv/bin\" \$PATH"
+      echo "set -x PATH \"$pyenv_bin\" \$PATH"
       echo 'status --is-interactive; and . (pyenv init -|psub)'
       echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
       ;;
     * )
-      echo "export PATH=\"\$HOME/.pyenv/bin:\$PATH\""
+      echo "export PATH=\"$pyenv_bin:\$PATH\""
       echo "eval \"\$(pyenv init -)\""
       echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
