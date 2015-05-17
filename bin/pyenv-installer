@@ -72,7 +72,7 @@ if ! command -v pyenv 1>/dev/null; then
   { echo "# Load pyenv automatically by adding"
     echo "# the following to ${profile}:"
     echo
-    pyenv_bin=${PYENV_ROOT-$HOME}/bin
+    pyenv_bin=${PYENV_ROOT-$HOME/.pyenv}/bin
     pyenv_bin=${pyenv_bin/$HOME/'$HOME'}
     case "$shell" in
     fish )
