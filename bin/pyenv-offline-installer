@@ -37,14 +37,14 @@ fi
 
 if [ ! -e "$PYENV_PACKAGE_ARCHIVE" ]; then
   { echo
-    colorize 1 "WARNING"
+    colorize 1 "ERROR"
     echo ": file $PYENV_PACKAGE_ARCHIVE not exists."
     echo
   } >&2
   exit 1
 fi
 
-# decompress archive.
+# Decompress archive.
 TMP_DIR=$(mktemp -d)
 
 tar -xf "$PYENV_PACKAGE_ARCHIVE" -C "$TMP_DIR"
