@@ -73,12 +73,12 @@ if ! command -v pyenv 1>/dev/null; then
     echo
     case "$shell" in
     fish )
-      echo "set -x PATH \"\$HOME/.pyenv/bin\" \$PATH"
+      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
       echo 'status --is-interactive; and . (pyenv init -|psub)'
       echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
       ;;
     * )
-      echo "export PATH=\"\$HOME/.pyenv/bin:\$PATH\""
+      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\""
       echo "eval \"\$(pyenv init -)\""
       echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
