@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+#
+# Usage:
+#   pyenv-offline-installer [<path-to-archive>]
+# 
+# if <path-to-archive> is omitted, the script would search for
+# "pyenv-package.tar.gz" in current working directory.
 
 set -e
 [ -n "$PYENV_DEBUG" ] && set -x
@@ -25,22 +31,23 @@ conditional_mv() {
   [ -d "$2" ] || mkdir -p "$2" && mv "$1"/* "$2"
 }
 
-if ! command -v git 1>/dev/null 2>&1; then
-  echo "pyenv: Git is not installed, can't continue." >&2
-  exit 1
-fi
-
-# PYENV_PACKAGE_ARCHIVE is the path of pyenv compressed archive file.
-if [ -z "$PYENV_PACKAGE_ARCHIVE" ]; then
+if [ -z "$1" ]; then
   PYENV_PACKAGE_ARCHIVE="$(cd $(dirname "$0") && pwd)/pyenv-package.tar.gz"
+else
+  PYENV_PACKAGE_ARCHIVE="$1"
 fi
 
 if [ ! -e "$PYENV_PACKAGE_ARCHIVE" ]; then
   { echo
-    colorize 1 "WARNING"
-    echo ": file $PYENV_PACKAGE_ARCHIVE not exists."
+    colorize 1 "ERROR"
+    echo ": file $PYENV_PACKAGE_ARCHIVE does not exists."
     echo
   } >&2
+  exit 1
+fi
+
+if ! command -v git 1>/dev/null 2>&1; then
+  echo "pyenv: Git is not installed, can't continue." >&2
   exit 1
 fi
 
