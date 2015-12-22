@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+set -e
+[ -n "$PYENV_DEBUG" ] && set -x
+
+if [ -z "$PYENV_ROOT" ]; then
+  PYENV_ROOT="${HOME}/.pyenv"
+fi
+
+shell="$1"
+if [ -z "$shell" ]; then
+  shell="$(ps c -p "$PPID" -o 'ucomm=' 2>/dev/null || true)"
+  shell="${shell##-}"
+  shell="${shell%% *}"
+  shell="$(basename "${shell:-$SHELL}")"
+fi
+
+colorize() {
+  if [ -t 1 ]; then printf "\e[%sm%s\e[m" "$1" "$2"
+  else echo -n "$2"
+  fi
+}
+
+conditional_mv() {
+  [ -d "$2" ] || mkdir -p "$2" && mv "$1"/* "$2"
+}
+
+if ! command -v git 1>/dev/null 2>&1; then
+  echo "pyenv: Git is not installed, can't continue." >&2
+  exit 1
+fi
+
+# PYENV_PACKAGE_ARCHIVE is the path of pyenv compressed archive file.
+if [ -z "$PYENV_PACKAGE_ARCHIVE" ]; then
+  PYENV_PACKAGE_ARCHIVE="$(cd $(dirname "$0") && pwd)/pyenv-package.tar.gz"
+fi
+
+if [ ! -e "$PYENV_PACKAGE_ARCHIVE" ]; then
+  { echo
+    colorize 1 "ERROR"
+    echo ": file $PYENV_PACKAGE_ARCHIVE not exists."
+    echo
+  } >&2
+  exit 1
+fi
+
+# Decompress archive.
+TMP_DIR=$(mktemp -d)
+
+tar -xf "$PYENV_PACKAGE_ARCHIVE" -C "$TMP_DIR"
+
+conditional_mv "$TMP_DIR/pyenv"            "${PYENV_ROOT}"
+conditional_mv "$TMP_DIR/pyenv-doctor"     "${PYENV_ROOT}/plugins/pyenv-doctor"
+conditional_mv "$TMP_DIR/pyenv-installer"  "${PYENV_ROOT}/plugins/pyenv-installer"
+conditional_mv "$TMP_DIR/pyenv-update"     "${PYENV_ROOT}/plugins/pyenv-update"
+conditional_mv "$TMP_DIR/pyenv-virtualenv" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
+conditional_mv "$TMP_DIR/pyenv-which-ext"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
+
+rm -rf $TMP_DIR
+
+
+if ! command -v pyenv 1>/dev/null; then
+  { echo
+    colorize 1 "WARNING"
+    echo ": seems you still have not added 'pyenv' to the load path."
+    echo
+  } >&2
+
+  case "$shell" in
+  bash )
+    profile="~/.bash_profile"
+    ;;
+  zsh )
+    profile="~/.zshrc"
+    ;;
+  ksh )
+    profile="~/.profile"
+    ;;
+  fish )
+    profile="~/.config/fish/config.fish"
+    ;;
+  * )
+    profile="your profile"
+    ;;
+  esac
+
+  { echo "# Load pyenv automatically by adding"
+    echo "# the following to ${profile}:"
+    echo
+    case "$shell" in
+    fish )
+      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
+      echo 'status --is-interactive; and . (pyenv init -|psub)'
+      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
+      ;;
+    * )
+      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\""
+      echo "eval \"\$(pyenv init -)\""
+      echo "eval \"\$(pyenv virtualenv-init -)\""
+      ;;
+    esac
+  } >&2
+fi
