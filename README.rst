@@ -26,7 +26,7 @@ Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
 
     $ rm -fr ~/.pyenv
 
-If you need, export USE_GIT_URI=true to use git:// instad of https// for git clone.
+If you need, export USE_GIT_URI to use git:// instad of https// for git clone.
 
 PyPi way
 ~~~~~~~~
