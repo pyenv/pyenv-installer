@@ -25,6 +25,12 @@ Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
 (default: ``~/.pyenv``). To uninstall, just remove it::
 
     $ rm -fr ~/.pyenv
+    
+and remove these three lines from ``.bashrc``::
+
+    export PATH="/root/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 
 If you need, export USE_GIT_URI to use git:// instad of https// for git clone.
 
