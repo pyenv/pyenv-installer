@@ -28,7 +28,7 @@ Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
     
 and remove these three lines from ``.bashrc``::
 
-    export PATH="/root/.pyenv/bin:$PATH"
+    export PATH="~/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
