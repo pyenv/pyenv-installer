@@ -13,20 +13,28 @@ direct way is still recommended if you want to play it safe.
 Github way (recommended)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install::
+Install:
+
+.. code:: bash
 
     $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
-Update::
+Update:
+
+.. code:: bash
 
     $ pyenv update
 
 Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
-(default: ``~/.pyenv``). To uninstall, just remove it::
+(default: ``~/.pyenv``). To uninstall, just remove it:
+
+.. code:: bash
 
     $ rm -fr ~/.pyenv
     
-and remove these three lines from ``.bashrc``::
+and remove these three lines from ``.bashrc``:
+
+.. code:: bash
 
     export PATH="~/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
@@ -72,7 +80,7 @@ something like ``vagrant@vagrant-ubuntu-trusty-64:~$``
 The project (this repository) is mapped into the vagrant image at
 /vagrant
 
-::
+.. code:: bash
 
     $ cd /vagrant
     $ python setup.py install
