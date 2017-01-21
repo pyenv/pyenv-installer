@@ -40,6 +40,14 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
+and restart your shell so the path changes take effect.
+
+.. code:: bash
+
+    $ exec $SHELL
+
+You can now begin using pyenv.
+
 If you need, export USE_GIT_URI to use git:// instad of https// for git clone.
 
 PyPi way
