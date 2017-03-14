@@ -40,7 +40,7 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
-If you need, export USE_GIT_URI to use git:// instad of https// for git clone.
+If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
 
 PyPi way
 ~~~~~~~~
