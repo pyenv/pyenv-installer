@@ -6,7 +6,7 @@ This tool installs ``pyenv`` and friends. It is inspired by `rbenv-installer <ht
 Installation / Update / Uninstallation
 --------------------------------------
 
-There are two ways to install `pyenv <https://github.com/yyuu/pyenv>`__.
+There are two ways to install `pyenv <https://github.com/pyenv/pyenv>`__.
 The PyPi support is not tested by many users yet, so the
 direct way is still recommended if you want to play it safe.
 
@@ -17,7 +17,7 @@ Install:
 
 .. code:: bash
 
-    $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    $ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 
 Update:
 
@@ -62,7 +62,7 @@ thin wrapper around the shell install script.
 Development and testing
 -----------------------
 
-The `project on github <https://github.com/yyuu/pyenv-installer>`__ contains
+The `project on github <https://github.com/pyenv/pyenv-installer>`__ contains
 a setup for vagrant to test the installer inside a vagrant managed virtual image.
 
 If you don't know vagrant yet: just `install the latest
