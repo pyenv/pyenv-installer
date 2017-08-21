@@ -18,6 +18,12 @@ Install:
 .. code:: bash
 
     $ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+    
+Or use the short URL:
+
+.. code:: bash
+
+    $ curl -L https://git.io/install-pyenv | bash
 
 Update:
 
