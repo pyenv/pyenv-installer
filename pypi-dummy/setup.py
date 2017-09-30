@@ -1,21 +1,25 @@
-import distutils.core
-from distutils.command.install import install
-import subprocess
+import sys
+from setuptools import setup
+from setuptools.command.install import install
 
+project_url = 'https://github.com/yyuu/pyenv-installer'
 
-class PyenvInstall(install):
-    def run(self):
-        print(subprocess.check_output(['bash', 'bin/pyenv-installer']))
-
-with open('README.rst') as file:
+with open('pypi-readme.rst') as file:
     long_description = file.read()
 
-distutils.core.setup(
-    version='20150113',
+
+class NoInstall(install):
+    def run(self):
+        sys.exit("NOTE: this package is not installable with pip."
+                 "Please follow instructions on %s" % project_url)
+
+setup(
+    version='0.0.0',
     name='pyenv',
     author='Yamashita, Yuu',
-    url='https://github.com/yyuu/pyenv-installer',
-    description='Tool to install pyenv and friends',
+    author_email='peek824545201@gmail.com',
+    url=project_url,
+    description='pyenv project placeholder package',
     long_description=long_description,
     license='MIT',
     platforms=['UNIX'],
@@ -30,5 +34,5 @@ distutils.core.setup(
         'Topic :: System :: Systems Administration',
         'Topic :: Utilities',
     ],
-    cmdclass=dict(install=PyenvInstall),
+    cmdclass={'install': NoInstall},
 )

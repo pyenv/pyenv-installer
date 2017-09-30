@@ -6,13 +6,6 @@ This tool installs ``pyenv`` and friends. It is inspired by `rbenv-installer <ht
 Installation / Update / Uninstallation
 --------------------------------------
 
-There are two ways to install `pyenv <https://github.com/pyenv/pyenv>`__.
-The PyPi support is not tested by many users yet, so the
-direct way is still recommended if you want to play it safe.
-
-Github way (recommended)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 Install:
 
 .. code:: bash
@@ -41,23 +34,6 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv virtualenv-init -)"
 
 If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
-
-PyPi way
-~~~~~~~~
-
-**WARNING** still a very hacky proof of concept. Does not work with Python 3 at all yet and in Python 2 only with 
-the use of the --egg parameter.
-
-Install::
-
-    $ pip install --egg pyenv
-
-
-In the current implementation updates and uninstallation works exactly like
-the github way.
-
-**NOTE**: ``pip freeze`` will not show pyenv as installed as this tool is just a
-thin wrapper around the shell install script.
 
 Development and testing
 -----------------------
@@ -94,6 +70,11 @@ Pyenv should be installed and responding now.
 
 Version History
 ---------------
+
+20170930
+~~~~~~~~
+
+-  Remove experimental PyPi support and replace with a dummy package.
 
 20150113
 ~~~~~~~~

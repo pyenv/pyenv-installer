@@ -1,8 +1,4 @@
 *.swo
 *.swp
 
-.idea/*
 .vagrant/*
-dist/*
-pyenv.egg-info/*
-MANIFEST
