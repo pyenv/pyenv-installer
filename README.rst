@@ -1,12 +1,12 @@
 pyenv installer
 ===============
 
-This tool installs ``pyenv`` and friends. It is inspired by `rbenv-installer <https://github.com/fesplugas/rbenv-installer>`__.
+This tool installs `pyenv <https://github.com/pyenv/pyenv>`__ and friends. It is inspired by `rbenv-installer <https://github.com/fesplugas/rbenv-installer>`__.
 
 Installation / Update / Uninstallation
 --------------------------------------
 
-There are two ways to install `pyenv <https://github.com/pyenv/pyenv>`__.
+There are two ways to install pyenv.
 The PyPi support is not tested by many users yet, so the
 direct way is still recommended if you want to play it safe.
 
