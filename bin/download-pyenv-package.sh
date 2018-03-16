@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 checkout() {
-  [ -d "$2" ] && $(cd "$2"; git clone "$1")
+  [ -d "$2" ] && (cd "$2"; git clone "$1")
 }
 
 if [ -z "$PYENV_PACKAGE_ARCHIVE" ]; then
