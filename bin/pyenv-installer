@@ -21,8 +21,13 @@ colorize() {
   fi
 }
 
+failed_checkout() {
+  echo "Failed to git clone $1"
+  exit -1
+}
+
 checkout() {
-  [ -d "$2" ] || git clone --depth 1 "$1" "$2"
+  [ -d "$2" ] || git clone --depth 1 "$1" "$2" || failed_checkout "$1"
 }
 
 if ! command -v git 1>/dev/null 2>&1; then
