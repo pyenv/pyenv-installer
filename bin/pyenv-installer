@@ -57,7 +57,7 @@ if ! command -v pyenv 1>/dev/null; then
 
   case "$shell" in
   bash )
-    profile="~/.bash_profile"
+    profile="~/.bashrc"
     ;;
   zsh )
     profile="~/.zshrc"
