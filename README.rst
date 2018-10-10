@@ -10,6 +10,13 @@ There are two ways to install pyenv.
 The PyPi support is not tested by many users yet, so the
 direct way is still recommended if you want to play it safe.
 
+Prerequisites
+-------------
+In general, compiling your own Python interpreter requires the installation of the
+appropriate libraries and packages.  The `installation wiki
+<https://github.com/pyenv/pyenv/wiki/Common-build-problems>`__ provides a list of these for common
+operating systems.
+
 Github way (recommended)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
