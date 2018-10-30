@@ -116,7 +116,7 @@ Version History
 License
 -------
 
-(The MIT License)
+`(The MIT License) <https://github.com/pyenv/pyenv-installer/blob/master/LICENSE>`__
 
 -  Copyright (c) 2013-2015 Yamashita, Yuu
 -                2015 Oliver Bestwalter (PyPi support)
