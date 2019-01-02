@@ -19,13 +19,13 @@ for more information.
 """
 
 ERROR_MSG = """\
-################ NOTE ################
-This package is not installable with pip. Install it with:
+############################ NOTE ############################
+We are sorry, but this package is not installable with pip.
 
-curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-
-See full instructions at https://github.com/pyenv/pyenv-installer
-######################################
+Please read the installation instructions at:
+ 
+https://github.com/pyenv/pyenv#installation
+##############################################################
 """
 
 
