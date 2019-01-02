@@ -1,33 +1,47 @@
 import sys
+
 from setuptools import setup
 from setuptools.command.install import install
 
-project_url = 'https://github.com/yyuu/pyenv-installer'
-install_command = 'curl -L https://raw.githubusercontent.com/pyenv/' \
-                  'pyenv-installer/master/bin/pyenv-installer | bash'
+LONG_DESCRIPTION = """\
+pyenv
+=====
 
-with open('pypi-readme.rst') as file:
-    long_description = file.read()
+pyenv lets you easily switch between multiple versions of Python. It's simple, 
+unobtrusive, and follows the UNIX tradition of single-purpose tools that do one 
+thing well.
+
+**NOTE:** This is a placeholder package. 
+pyenv is a collection of shell scripts and not installable with pip.
+
+See `installation instructions <https://github.com/pyenv/pyenv#installation>` 
+for more information.
+"""
+
+ERROR_MSG = """\
+################ NOTE ################
+This package is not installable with pip. Install it with:
+
+curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+
+See full instructions at https://github.com/pyenv/pyenv-installer
+######################################
+"""
 
 
 class NoInstall(install):
     def run(self):
-        sys.exit(
-            "################ NOTE ################\n"
-            "This package is not installable with pip. Install it with:\n\n"
-            "%s\n\n"
-            "See full instructions at %s\n" 
-            "######################################\n" % (
-                install_command, project_url))
+        sys.exit(ERROR_MSG)
+
 
 setup(
     version='0.0.0',
     name='pyenv',
     author='Yamashita, Yuu',
     author_email='peek824545201@gmail.com',
-    url=project_url,
+    url="https://github.com/pyenv/pyenv",
     description='pyenv project placeholder package',
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     license='MIT',
     platforms=['UNIX'],
     classifiers=[
