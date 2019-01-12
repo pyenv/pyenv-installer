@@ -14,7 +14,7 @@ thing well.
 **NOTE:** This is a placeholder package. 
 pyenv is a collection of shell scripts and not installable with pip.
 
-See `installation instructions <https://github.com/pyenv/pyenv#installation>` 
+See `installation instructions <https://github.com/pyenv/pyenv#installation>`_ 
 for more information.
 """
 
