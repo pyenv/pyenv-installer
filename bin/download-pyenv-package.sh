@@ -17,12 +17,12 @@ else
 fi
 
 # checkout to temporary directory.
-checkout "${GITHUB}/yyuu/pyenv.git"            "$TMP_DIR"
-checkout "${GITHUB}/yyuu/pyenv-doctor.git"     "$TMP_DIR"
-checkout "${GITHUB}/yyuu/pyenv-installer.git"  "$TMP_DIR"
-checkout "${GITHUB}/yyuu/pyenv-update.git"     "$TMP_DIR"
-checkout "${GITHUB}/yyuu/pyenv-virtualenv.git" "$TMP_DIR"
-checkout "${GITHUB}/yyuu/pyenv-which-ext.git"  "$TMP_DIR"
+checkout "${GITHUB}/pyenv/pyenv.git"            "$TMP_DIR"
+checkout "${GITHUB}/pyenv/pyenv-doctor.git"     "$TMP_DIR"
+checkout "${GITHUB}/pyenv/pyenv-installer.git"  "$TMP_DIR"
+checkout "${GITHUB}/pyenv/pyenv-update.git"     "$TMP_DIR"
+checkout "${GITHUB}/pyenv/pyenv-virtualenv.git" "$TMP_DIR"
+checkout "${GITHUB}/pyenv/pyenv-which-ext.git"  "$TMP_DIR"
 
 # create archive.
 tar -zcf "$PYENV_PACKAGE_ARCHIVE" -C "$TMP_DIR" .

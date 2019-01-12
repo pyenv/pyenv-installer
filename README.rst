@@ -1,23 +1,27 @@
 pyenv installer
 ===============
 
-This tool installs ``pyenv`` and friends. It is inspired by `rbenv-installer <https://github.com/fesplugas/rbenv-installer>`__.
+This tool installs `pyenv <https://github.com/pyenv/pyenv>`__ and friends. It is inspired by `rbenv-installer <https://github.com/rbenv/rbenv-installer>`__.
 
 Installation / Update / Uninstallation
 --------------------------------------
 
-There are two ways to install `pyenv <https://github.com/yyuu/pyenv>`__.
-The PyPi support is not tested by many users yet, so the
-direct way is still recommended if you want to play it safe.
-
-Github way (recommended)
-~~~~~~~~~~~~~~~~~~~~~~~~
+Prerequisites
+-------------
+In general, compiling your own Python interpreter requires the installation of the
+appropriate libraries and packages.  The `installation wiki
+<https://github.com/pyenv/pyenv/wiki/Common-build-problems>`__ provides a list of these for common
+operating systems.
 
 Install:
 
 .. code:: bash
 
-    $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    $ curl https://pyenv.run | bash
+    
+``pyenv.run`` redirects to the install script in this repository and the invocation above is equivalent to::
+
+    $ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
 Update:
 
@@ -50,27 +54,10 @@ You can now begin using pyenv.
 
 If you need, export USE_GIT_URI to use git:// instad of https// for git clone.
 
-PyPi way
-~~~~~~~~
-
-**WARNING** still a very hacky proof of concept. Does not work with Python 3 at all yet and in Python 2 only with 
-the use of the --egg parameter.
-
-Install::
-
-    $ pip install --egg pyenv
-
-
-In the current implementation updates and uninstallation works exactly like
-the github way.
-
-**NOTE**: ``pip freeze`` will not show pyenv as installed as this tool is just a
-thin wrapper around the shell install script.
-
 Development and testing
 -----------------------
 
-The `project on github <https://github.com/yyuu/pyenv-installer>`__ contains
+The `project on github <https://github.com/pyenv/pyenv-installer>`__ contains
 a setup for vagrant to test the installer inside a vagrant managed virtual image.
 
 If you don't know vagrant yet: just `install the latest
@@ -103,6 +90,11 @@ Pyenv should be installed and responding now.
 Version History
 ---------------
 
+20190111
+~~~~~~~~
+
+-  Remove experimental PyPi support and replace with a dummy package.
+
 20150113
 ~~~~~~~~
 
@@ -117,26 +109,4 @@ Version History
 License
 -------
 
-(The MIT License)
-
--  Copyright (c) 2013-2015 Yamashita, Yuu
--                2015 Oliver Bestwalter (PyPi support)
-
-| Permission is hereby granted, free of charge, to any person obtaining
-| a copy of this software and associated documentation files (the
-| "Software"), to deal in the Software without restriction, including
-| without limitation the rights to use, copy, modify, merge, publish,
-| distribute, sublicense, and/or sell copies of the Software, and to
-| permit persons to whom the Software is furnished to do so, subject to
-| the following conditions:
-
-| The above copyright notice and this permission notice shall be
-| included in all copies or substantial portions of the Software.
-
-| THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-| EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-| MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-| NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-| LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-| OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-| WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT - see `License file <LICENSE>`_.
