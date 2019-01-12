@@ -23,6 +23,13 @@ Install:
 
     $ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
+Restart your shell so the path changes take effect:
+
+.. code:: bash
+    $ exec $SHELL
+
+You can now begin using pyenv.
+
 Update:
 
 .. code:: bash
