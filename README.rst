@@ -82,8 +82,8 @@ Pyenv should be installed and responding now.
 Version History
 ---------------
 
-(Not released yet)
-~~~~~~~~~~~~~~~~~~
+20190111
+~~~~~~~~
 
 -  Remove experimental PyPi support and replace with a dummy package.
 
