@@ -6,19 +6,12 @@ This tool installs `pyenv <https://github.com/pyenv/pyenv>`__ and friends. It is
 Installation / Update / Uninstallation
 --------------------------------------
 
-There are two ways to install pyenv.
-The PyPi support is not tested by many users yet, so the
-direct way is still recommended if you want to play it safe.
-
 Prerequisites
 -------------
 In general, compiling your own Python interpreter requires the installation of the
 appropriate libraries and packages.  The `installation wiki
 <https://github.com/pyenv/pyenv/wiki/Common-build-problems>`__ provides a list of these for common
 operating systems.
-
-Github way (recommended)
-~~~~~~~~~~~~~~~~~~~~~~~~
 
 Install:
 
@@ -48,23 +41,6 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv virtualenv-init -)"
 
 If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
-
-PyPi way
-~~~~~~~~
-
-**WARNING** still a very hacky proof of concept. Does not work with Python 3 at all yet and in Python 2 only with 
-the use of the --egg parameter.
-
-Install::
-
-    $ pip install --egg pyenv
-
-
-In the current implementation updates and uninstallation works exactly like
-the github way.
-
-**NOTE**: ``pip freeze`` will not show pyenv as installed as this tool is just a
-thin wrapper around the shell install script.
 
 Development and testing
 -----------------------
@@ -102,6 +78,11 @@ Pyenv should be installed and responding now.
 Version History
 ---------------
 
+(Not released yet)
+~~~~~~~~~~~~~~~~~~
+
+-  Remove experimental PyPi support and replace with a dummy package.
+
 20150113
 ~~~~~~~~
 
@@ -116,26 +97,4 @@ Version History
 License
 -------
 
-`(The MIT License) <https://github.com/pyenv/pyenv-installer/blob/master/LICENSE>`__
-
--  Copyright (c) 2013-2015 Yamashita, Yuu
--                2015 Oliver Bestwalter (PyPi support)
-
-| Permission is hereby granted, free of charge, to any person obtaining
-| a copy of this software and associated documentation files (the
-| "Software"), to deal in the Software without restriction, including
-| without limitation the rights to use, copy, modify, merge, publish,
-| distribute, sublicense, and/or sell copies of the Software, and to
-| permit persons to whom the Software is furnished to do so, subject to
-| the following conditions:
-
-| The above copyright notice and this permission notice shall be
-| included in all copies or substantial portions of the Software.
-
-| THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-| EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-| MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-| NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-| LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-| OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-| WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT - see [License file](LICENSE).
