@@ -17,6 +17,10 @@ Install:
 
 .. code:: bash
 
+    $ curl -L https://pyenv.run | bash
+    
+``pyenv.run`` redirects to the install script in this repository and the invocation above is equivalent to::
+
     $ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
 Update:
