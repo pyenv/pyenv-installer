@@ -101,4 +101,4 @@ Version History
 License
 -------
 
-MIT - see [License file](LICENSE).
+MIT - see `License file <LICENSE>`_.
