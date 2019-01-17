@@ -89,4 +89,11 @@ if ! command -v pyenv 1>/dev/null; then
       ;;
     esac
   } >&2
+elif [ -d "${PYENV_ROOT}" ]; then
+  { echo
+    colorize 1 "WARNING"
+    echo ": Kindly remove '.pyenv' from ${HOME} to proceed with installation."
+    echo
+  } >&2
+    exit 1
 fi
