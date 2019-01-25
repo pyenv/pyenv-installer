@@ -7,6 +7,22 @@ if [ -z "$PYENV_ROOT" ]; then
   PYENV_ROOT="${HOME}/.pyenv"
 fi
 
+colorize() {
+  if [ -t 1 ]; then printf "\e[%sm%s\e[m" "$1" "$2"
+  else echo -n "$2"
+  fi
+}
+
+# Checks for `.pyenv` file, and suggests to remove it for installing
+if [ -d "${PYENV_ROOT}" ]; then
+  { echo
+    colorize 1 "WARNING"
+    echo ": Can not proceed with installation. Kindly remove '.pyenv' from ${HOME} first."
+    echo
+  } >&2
+    exit 1
+fi
+
 shell="$1"
 if [ -z "$shell" ]; then
   shell="$(ps c -p "$PPID" -o 'ucomm=' 2>/dev/null || true)"
@@ -14,12 +30,6 @@ if [ -z "$shell" ]; then
   shell="${shell%% *}"
   shell="$(basename "${shell:-$SHELL}")"
 fi
-
-colorize() {
-  if [ -t 1 ]; then printf "\e[%sm%s\e[m" "$1" "$2"
-  else echo -n "$2"
-  fi
-}
 
 failed_checkout() {
   echo "Failed to git clone $1"
