@@ -17,7 +17,7 @@ colorize() {
 if [ -d "${PYENV_ROOT}" ]; then
   { echo
     colorize 1 "WARNING"
-    echo ": Can not proceed with installation. Kindly remove '.pyenv' from ${HOME} first."
+    echo ": Can not proceed with installation. Kindly remove the '${PYENV_ROOT}' directory first."
     echo
   } >&2
     exit 1
