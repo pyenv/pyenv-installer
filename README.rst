@@ -53,6 +53,17 @@ and remove these three lines from ``.bashrc``:
 
 If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
 
+Using pyenv-installer on Travis CI
+----------------------------------
+
+Travis itself uses pyenv and therefore `PYENV_ROOT` is set already. To make it work anyway the installation for pyenv-installer needs to look like this::
+
+  [...]
+  - unset PYENV_ROOT
+  - curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+  - export PATH="$HOME/.pyenv/bin:$PATH"
+  - pyenv install 3.5.2
+
 Development and testing
 -----------------------
 
