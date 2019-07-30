@@ -14,7 +14,7 @@ appropriate libraries and packages.  The `installation wiki
 operating systems.
 
 Install:
-
+----
 .. code:: bash
 
     $ curl https://pyenv.run | bash
@@ -30,13 +30,18 @@ Restart your shell so the path changes take effect:
 
 You can now begin using pyenv.
 
-Update:
+If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
 
+Update:
+----
 .. code:: bash
 
     $ pyenv update
 
-Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
+Uninstall:
+----
+
+``pyenv`` is installed within ``$PYENV_ROOT``
 (default: ``~/.pyenv``). To uninstall, just remove it:
 
 .. code:: bash
@@ -51,7 +56,7 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
-If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
+
 
 Using pyenv-installer on Travis CI
 ----------------------------------
