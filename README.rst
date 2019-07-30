@@ -7,14 +7,14 @@ Installation / Update / Uninstallation
 --------------------------------------
 
 Prerequisites
--------------
+====
 In general, compiling your own Python interpreter requires the installation of the
 appropriate libraries and packages.  The `installation wiki
 <https://github.com/pyenv/pyenv/wiki/Common-build-problems>`__ provides a list of these for common
 operating systems.
 
 Install:
-----
+====
 .. code:: bash
 
     $ curl https://pyenv.run | bash
@@ -33,13 +33,13 @@ You can now begin using pyenv.
 If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
 
 Update:
-----
+====
 .. code:: bash
 
     $ pyenv update
 
 Uninstall:
-----
+====
 
 ``pyenv`` is installed within ``$PYENV_ROOT``
 (default: ``~/.pyenv``). To uninstall, just remove it:
