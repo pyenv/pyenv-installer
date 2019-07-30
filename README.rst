@@ -3,16 +3,17 @@ pyenv installer
 
 This tool installs `pyenv <https://github.com/pyenv/pyenv>`__ and friends. It is inspired by `rbenv-installer <https://github.com/rbenv/rbenv-installer>`__.
 
-Installation / Update / Uninstallation
---------------------------------------
-
 Prerequisites
-~~~~
+----
 In general, compiling your own Python interpreter requires the installation of the
 appropriate libraries and packages.  The `installation wiki
 <https://github.com/pyenv/pyenv/wiki/Common-build-problems>`__ provides a list of these for common
 operating systems.
 
+
+Installation / Update / Uninstallation
+--------------------------------------
+Once prerequisites have been installed correctly: 
 Install:
 ~~~~
 .. code:: bash
