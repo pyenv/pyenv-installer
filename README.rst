@@ -28,11 +28,12 @@ Install:
 Restart your shell so the path changes take effect:
 
 .. code:: bash
+
     $ exec $SHELL
 
 You can now begin using pyenv.
 
-If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
+If you need, ``export USE_GIT_URI`` to use ``git://`` instead of ``https://`` for git clone.
 
 Update:
 ~~~~
@@ -50,7 +51,7 @@ Uninstall:
 
     $ rm -fr ~/.pyenv
     
-and remove these three lines from ``.bashrc``:
+then remove these three lines from ``.bashrc``:
 
 .. code:: bash
 
@@ -58,6 +59,13 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
+and finally, restart your shell:
+
+.. code:: bash
+
+          $ exec $SHELL
+
+          
 
 
 Using pyenv-installer on Travis CI
