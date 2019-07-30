@@ -14,6 +14,7 @@ operating systems.
 Installation / Update / Uninstallation
 --------------------------------------
 Once prerequisites have been installed correctly: 
+
 Install:
 ~~~~
 .. code:: bash
