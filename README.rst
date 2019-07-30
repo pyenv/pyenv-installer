@@ -71,7 +71,7 @@ and finally, restart your shell:
 Using pyenv-installer on Travis CI
 ----------------------------------
 
-Travis itself uses pyenv and therefore `PYENV_ROOT` is set already. To make it work anyway the installation for pyenv-installer needs to look like this::
+Travis itself uses pyenv and therefore ``PYENV_ROOT`` is set already. To make it work anyway the installation for pyenv-installer needs to look like this::
 
   [...]
   - unset PYENV_ROOT
