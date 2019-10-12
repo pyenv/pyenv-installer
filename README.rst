@@ -3,18 +3,20 @@ pyenv installer
 
 This tool installs `pyenv <https://github.com/pyenv/pyenv>`__ and friends. It is inspired by `rbenv-installer <https://github.com/rbenv/rbenv-installer>`__.
 
-Installation / Update / Uninstallation
---------------------------------------
-
 Prerequisites
--------------
+----
 In general, compiling your own Python interpreter requires the installation of the
 appropriate libraries and packages.  The `installation wiki
 <https://github.com/pyenv/pyenv/wiki/Common-build-problems>`__ provides a list of these for common
 operating systems.
 
-Install:
 
+Installation / Update / Uninstallation
+--------------------------------------
+Once prerequisites have been installed correctly: 
+
+Install:
+~~~~
 .. code:: bash
 
     $ curl https://pyenv.run | bash
@@ -26,24 +28,30 @@ Install:
 Restart your shell so the path changes take effect:
 
 .. code:: bash
+
     $ exec $SHELL
 
 You can now begin using pyenv.
 
-Update:
+If you need, ``export USE_GIT_URI`` to use ``git://`` instead of ``https://`` for git clone.
 
+Update:
+~~~~
 .. code:: bash
 
     $ pyenv update
 
-Uninstall: ``pyenv`` is installed within ``$PYENV_ROOT``
+Uninstall:
+~~~~
+
+``pyenv`` is installed within ``$PYENV_ROOT``
 (default: ``~/.pyenv``). To uninstall, just remove it:
 
 .. code:: bash
 
     $ rm -fr ~/.pyenv
     
-and remove these three lines from ``.bashrc``:
+then remove these three lines from ``.bashrc``:
 
 .. code:: bash
 
@@ -51,12 +59,19 @@ and remove these three lines from ``.bashrc``:
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
-If you need, export USE_GIT_URI to use git:// instead of https:// for git clone.
+and finally, restart your shell:
+
+.. code:: bash
+
+          $ exec $SHELL
+
+          
+
 
 Using pyenv-installer on Travis CI
 ----------------------------------
 
-Travis itself uses pyenv and therefore `PYENV_ROOT` is set already. To make it work anyway the installation for pyenv-installer needs to look like this::
+Travis itself uses pyenv and therefore ``PYENV_ROOT`` is set already. To make it work anyway the installation for pyenv-installer needs to look like this::
 
   [...]
   - unset PYENV_ROOT
