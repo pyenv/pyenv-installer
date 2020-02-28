@@ -40,23 +40,54 @@ checkout() {
   [ -d "$2" ] || git clone --depth 1 "$1" "$2" || failed_checkout "$1"
 }
 
-if ! command -v git 1>/dev/null 2>&1; then
-  echo "pyenv: Git is not installed, can't continue." >&2
-  exit 1
-fi
+extract() {
+  TEMP_DIR=$(mktemp -d pyenv-installer-XXXXXXXX)
+  unzip $1 -d $TEMP_DIR >/dev/null
+  ITEM_COUNT=$(ls -1 $TEMP_DIR | grep -c .)
+  if [ $ITEM_COUNT -ne 1 ]; then
+    rm -rf $TEMP_DIR
+    echo "pyenv-installer: Archive $1 contains bad number of first level items: $ITEM_COUNT." >&2
+    exit -1
+  fi
+  SUBDIR=$(ls -1 $TEMP_DIR)
+  if [ ! -d $TEMP_DIR/$SUBDIR ]; then
+    rm -rf $TEMP_DIR
+    echo "pyenv-installer: Archive $1 does not contain a subdir." >&2
+    exit -1
+  fi
+  mkdir -p $2
+  (shopt -s dotglob; mv -t $2 $TEMP_DIR/$SUBDIR/*)
+  rm -rf $TEMP_DIR
+}
 
-if [ -n "${USE_GIT_URI}" ]; then
-  GITHUB="git://github.com"
+if [ -n "$PYENV_FROM_ZIP" ]; then
+  # the user has downloaded a snapshot in form of separate zip files for the install
+  REPO_PREFIX=./
+  REPO_SUFFIX=-master.zip
+  CHECKOUT=extract
 else
-  GITHUB="https://github.com"
+  # the user wants to directly retrive the files from github using the git tool
+  if ! command -v git 1>/dev/null 2>&1; then
+    echo "pyenv: Git is not installed, can't continue." >&2
+    exit 1
+  fi
+
+  if [ -n "${USE_GIT_URI}" ]; then
+    GITHUB="git://github.com"
+  else
+    GITHUB="https://github.com"
+  fi
+  REPO_PREFIX=${GITHUB}/pyenv/
+  REPO_SUFFIX=.git
+  CHECKOUT=checkout
 fi
 
-checkout "${GITHUB}/pyenv/pyenv.git"            "${PYENV_ROOT}"
-checkout "${GITHUB}/pyenv/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"
-checkout "${GITHUB}/pyenv/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"
-checkout "${GITHUB}/pyenv/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"
-checkout "${GITHUB}/pyenv/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
-checkout "${GITHUB}/pyenv/pyenv-which-ext.git"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
+${CHECKOUT} "${REPO_PREFIX}pyenv${REPO_SUFFIX}"            "${PYENV_ROOT}"
+${CHECKOUT} "${REPO_PREFIX}pyenv-doctor${REPO_SUFFIX}"     "${PYENV_ROOT}/plugins/pyenv-doctor"
+${CHECKOUT} "${REPO_PREFIX}pyenv-installer${REPO_SUFFIX}"  "${PYENV_ROOT}/plugins/pyenv-installer"
+${CHECKOUT} "${REPO_PREFIX}pyenv-update${REPO_SUFFIX}"     "${PYENV_ROOT}/plugins/pyenv-update"
+${CHECKOUT} "${REPO_PREFIX}pyenv-virtualenv${REPO_SUFFIX}" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
+${CHECKOUT} "${REPO_PREFIX}pyenv-which-ext${REPO_SUFFIX}"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
 
 if ! command -v pyenv 1>/dev/null; then
   { echo
