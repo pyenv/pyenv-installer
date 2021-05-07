@@ -76,38 +76,20 @@ if ! command -v pyenv 1>/dev/null; then
     echo
   } >&2
 
-  case "$shell" in
-  bash )
-    profile="~/.bashrc"
-    ;;
-  zsh )
-    profile="~/.zshrc"
-    ;;
-  ksh )
-    profile="~/.profile"
-    ;;
-  fish )
-    profile="~/.config/fish/config.fish"
-    ;;
-  * )
-    profile="your profile"
-    ;;
-  esac
-
-  { echo "# Load pyenv automatically by adding"
-    echo "# the following to ${profile}:"
+  { echo "# Add pyenv executable to PATH by adding"
+    echo " the following to ~/.profile:"
     echo
     case "$shell" in
     fish )
       echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
-      echo 'status --is-interactive; and . (pyenv init -|psub)'
-      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
       ;;
     * )
       echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\""
-      echo "eval \"\$(pyenv init -)\""
-      echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
     esac
+    
+    # Without args, `init` commands print installation help
+    "${PYENV_ROOT}/bin/pyenv" init || true
+    "${PYENV_ROOT}/bin/pyenv" virtualenv-init || true
   } >&2
 fi
