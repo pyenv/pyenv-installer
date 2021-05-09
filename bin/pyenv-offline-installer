@@ -23,14 +23,6 @@ if [ -d "${PYENV_ROOT}" ]; then
     exit 1
 fi
 
-shell="$1"
-if [ -z "$shell" ]; then
-  shell="$(ps c -p "$PPID" -o 'ucomm=' 2>/dev/null || true)"
-  shell="${shell##-}"
-  shell="${shell%% *}"
-  shell="$(basename "${shell:-$SHELL}")"
-fi
-
 conditional_mv() {
   [ -d "$2" ] || mkdir -p "$2" && mv "$1"/* "$2"
 }
@@ -76,19 +68,7 @@ if ! command -v pyenv 1>/dev/null; then
     echo
   } >&2
 
-  { echo "# Add pyenv executable to PATH by adding"
-    echo " the following to ~/.profile:"
-    echo
-    case "$shell" in
-    fish )
-      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
-      ;;
-    * )
-      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\""
-      ;;
-    esac
-    
-    # Without args, `init` commands print installation help
+  { # Without args, `init` commands print installation help
     "${PYENV_ROOT}/bin/pyenv" init || true
     "${PYENV_ROOT}/bin/pyenv" virtualenv-init || true
   } >&2
