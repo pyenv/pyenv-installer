@@ -19,17 +19,17 @@ Install:
 ~~~~
 .. code:: bash
 
-    $ curl https://pyenv.run | bash
+    curl https://pyenv.run | bash
     
 ``pyenv.run`` redirects to the install script in this repository and the invocation above is equivalent to::
 
-    $ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
 Restart your shell so the path changes take effect:
 
 .. code:: bash
 
-    $ exec $SHELL
+    exec $SHELL
 
 You can now begin using pyenv.
 
@@ -39,7 +39,7 @@ Update:
 ~~~~
 .. code:: bash
 
-    $ pyenv update
+    pyenv update
 
 Uninstall:
 ~~~~
@@ -49,7 +49,7 @@ Uninstall:
 
 .. code:: bash
 
-    $ rm -fr ~/.pyenv
+    rm -fr ~/.pyenv
     
 then remove these three lines from ``.bashrc``:
 
@@ -63,7 +63,7 @@ and finally, restart your shell:
 
 .. code:: bash
 
-          $ exec $SHELL
+    exec $SHELL
 
           
 
@@ -91,8 +91,8 @@ this project directory and say
 
 ::
 
-    $ vagrant up
-    $ vagrant ssh
+    vagrant up
+    vagrant ssh
 
 Now you are inside the vagrant container and your prompt should like
 something like ``vagrant@vagrant-ubuntu-trusty-64:~$``
@@ -102,12 +102,12 @@ The project (this repository) is mapped into the vagrant image at
 
 .. code:: bash
 
-    $ cd /vagrant
-    $ python setup.py install
-    $ echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
-    $ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-    $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-    $ source ~/.bashrc
+    cd /vagrant
+    python setup.py install
+    echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+    echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+    source ~/.bashrc
 
 Pyenv should be installed and responding now.
 
