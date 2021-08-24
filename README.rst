@@ -56,7 +56,7 @@ then remove these three lines from ``.bashrc``:
 .. code:: bash
 
     export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 
 and finally, restart your shell:
