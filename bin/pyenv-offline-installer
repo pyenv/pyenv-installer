@@ -51,6 +51,9 @@ TMP_DIR=$(mktemp -d)
 
 tar -xf "$PYENV_PACKAGE_ARCHIVE" -C "$TMP_DIR"
 
+#root folder is appended with version/tag when the tar is extracted(like pyenv-2.2.5), so adding a move command with wildcard will fix this.
+mv $TMP_DIR/pyenv* $TMP_DIR/pyenv -R
+
 conditional_mv "$TMP_DIR/pyenv"            "${PYENV_ROOT}"
 conditional_mv "$TMP_DIR/pyenv-doctor"     "${PYENV_ROOT}/plugins/pyenv-doctor"
 conditional_mv "$TMP_DIR/pyenv-installer"  "${PYENV_ROOT}/plugins/pyenv-installer"
