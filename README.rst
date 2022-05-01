@@ -17,6 +17,9 @@ Once prerequisites have been installed correctly:
 
 Install:
 ~~~~
+Set ``PYENV_GIT_TAG`` to install a specific tagged version of pyenv (e.g. ``export PYENV_GIT_TAG=v2.2.5``).
+Otherwise the tip from master will be used.
+
 .. code:: bash
 
     curl https://pyenv.run | bash
