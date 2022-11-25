@@ -10,19 +10,42 @@ fi
 
 TMP_DIR=$(mktemp -d)
 
-if [ -n "${USE_HTTPS}" ]; then
-  GITHUB="https://github.com"
+# Check ssh authentication if USE_SSH_URL is present
+if [ -n "${USE_SSH_URL}" ]; then
+  if ! command -v ssh 1>/dev/null 2>&1; then
+    echo "pyenv: configuration USE_SSH found but ssh is not installed, can't continue." >&2
+    exit 1
+  fi
+
+  ssh -T git@github.com 1>/dev/null 2>&1 || EXIT_CODE=$?
+  if [[ ${EXIT_CODE} != 1 ]]; then
+    {
+      echo "pyenv: github ssh authentication failed."
+      echo
+      echo "Considering generate a ssh key using ssh-keygen and register it first."
+      echo
+      echo "See the link below for more information:"
+      echo
+      echo "  https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors#check-your-ssh-access"
+      echo
+    } >&2
+    exit 1
+  fi
+fi
+
+if [ -n "${USE_SSH_URL}" ]; then
+  GITHUB="git@github.com:"
 else
-  GITHUB="git://github.com"
+  GITHUB="https://github.com/"
 fi
 
 # checkout to temporary directory.
-checkout "${GITHUB}/pyenv/pyenv.git"            "$TMP_DIR"
-checkout "${GITHUB}/pyenv/pyenv-doctor.git"     "$TMP_DIR"
-checkout "${GITHUB}/pyenv/pyenv-installer.git"  "$TMP_DIR"
-checkout "${GITHUB}/pyenv/pyenv-update.git"     "$TMP_DIR"
-checkout "${GITHUB}/pyenv/pyenv-virtualenv.git" "$TMP_DIR"
-checkout "${GITHUB}/pyenv/pyenv-which-ext.git"  "$TMP_DIR"
+checkout "${GITHUB}pyenv/pyenv.git"            "$TMP_DIR"
+checkout "${GITHUB}pyenv/pyenv-doctor.git"     "$TMP_DIR"
+checkout "${GITHUB}pyenv/pyenv-installer.git"  "$TMP_DIR"
+checkout "${GITHUB}pyenv/pyenv-update.git"     "$TMP_DIR"
+checkout "${GITHUB}pyenv/pyenv-virtualenv.git" "$TMP_DIR"
+checkout "${GITHUB}pyenv/pyenv-which-ext.git"  "$TMP_DIR"
 
 # create archive.
 tar -zcf "$PYENV_PACKAGE_ARCHIVE" -C "$TMP_DIR" .
