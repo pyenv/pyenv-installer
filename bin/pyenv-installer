@@ -7,6 +7,17 @@ if [ -z "$PYENV_ROOT" ]; then
   export PYENV_ROOT="${HOME}/.pyenv"
 fi
 
+if [ -z "$shell" ]; then
+  shell="$(ps -p "$PPID" -o 'args=' 2>/dev/null || true)"
+  shell="${shell%% *}"
+  shell="${shell##-}"
+  shell="${shell:-$SHELL}"
+  shell="${shell##*/}"
+  shell="${shell%%-*}"
+fi
+
+USER_PATH_ADDED=false
+
 colorize() {
   if [ -t 1 ]; then printf "\e[%sm%s\e[m" "$1" "$2"
   else echo -n "$2"
@@ -50,7 +61,57 @@ checkout "${GITHUB}/pyenv/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-upd
 checkout "${GITHUB}/pyenv/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"  "master"
 checkout "${GITHUB}/pyenv/pyenv-which-ext.git"  "${PYENV_ROOT}/plugins/pyenv-which-ext"   "master"
 
+write_source() {
+  # expand ~ to user's home
+  local target="${1/#\~/$HOME}"
+
+  echo "Update file: $1" >&2
+
+  echo "" >>$target
+  echo '# pyenv' >>$target
+  echo 'export PATH="'"$PYENV_ROOT/bin:"'$PATH"' >>$target
+  echo 'eval "$(pyenv init -)"' >>$target
+  echo 'eval "$(pyenv virtualenv-init -)"' >>$target
+
+  USER_PATH_ADDED=true
+}
+
+add_userpath() {
+  # Will detect rc files by setting variables below:
+  # PYENV_SHELL_DETECT
+  # PYENV_PROFILE_DETECT
+  # PYENV_RC_DETECT
+  eval "$(${PYENV_ROOT}/bin/pyenv init --detect-shell $shell)"
+
+  case "$PYENV_SHELL_DETECT" in
+  bash )
+    write_source $PYENV_PROFILE_DETECT
+    write_source $PYENV_RC_DETECT
+    ;;
+  zsh )
+    write_source $PYENV_PROFILE_DETECT
+    write_source $PYENV_RC_DETECT
+    ;;
+  ksh )
+    write_source $PYENV_PROFILE_DETECT
+    ;;
+  * )
+    {
+      echo "Add userpath for $PYENV_SHELL_DETECT is not currently supported"
+      echo "Please set up manually"
+    } >&2
+    ;;
+  esac
+}
+
 if ! command -v pyenv 1>/dev/null; then
+
+  add_userpath
+  if ${USER_PATH_ADDED}; then
+    echo "Restart your shell to start using pyenv" >&2
+    exit 0
+  fi
+
   { echo
     colorize 1 "WARNING"
     echo ": seems you still have not added 'pyenv' to the load path."

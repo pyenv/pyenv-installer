@@ -54,8 +54,9 @@ Uninstall:
 .. code:: bash
 
     rm -fr ~/.pyenv
-    
-then remove these three lines from ``.bashrc``:
+
+then remove these three lines from your shell config files
+(``.bashrc``, ``.zshrc``, ``.profile``...):
 
 .. code:: bash
 
