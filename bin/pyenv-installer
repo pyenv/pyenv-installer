@@ -60,7 +60,7 @@ if [ -n "${USE_SSH}" ]; then
   fi
 fi
 
-if [ -n "${USE_SSH}"]; then
+if [ -n "${USE_SSH}" ]; then
   GITHUB="git@github.com:"
 else
   GITHUB="https://github.com/"
