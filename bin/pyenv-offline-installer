@@ -56,7 +56,6 @@ conditional_mv "$TMP_DIR/pyenv-doctor"     "${PYENV_ROOT}/plugins/pyenv-doctor"
 conditional_mv "$TMP_DIR/pyenv-installer"  "${PYENV_ROOT}/plugins/pyenv-installer"
 conditional_mv "$TMP_DIR/pyenv-update"     "${PYENV_ROOT}/plugins/pyenv-update"
 conditional_mv "$TMP_DIR/pyenv-virtualenv" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
-conditional_mv "$TMP_DIR/pyenv-which-ext"  "${PYENV_ROOT}/plugins/pyenv-which-ext"
 
 rm -rf $TMP_DIR
 
