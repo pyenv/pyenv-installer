@@ -29,11 +29,7 @@ If you wish to install a specific release of Pyenv rather than the latest head, 
 
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
-Restart your shell so the path changes take effect:
-
-.. code:: bash
-
-    exec $SHELL
+After installing, follow [these](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv) to set up your shell environment.
 
 You can now begin using pyenv.
 
