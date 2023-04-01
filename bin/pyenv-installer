@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 set -eu
-[ -n "$PYENV_DEBUG" ] && set -x
+[ -n "${PYENV_DEBUG:-}" ] && set -x
 
-if [ -z "$PYENV_ROOT" ]; then
+if [ -z "${PYENV_ROOT:-}" ]; then
   export PYENV_ROOT="${HOME}/.pyenv"
 fi
 
@@ -38,7 +38,7 @@ if ! command -v git 1>/dev/null 2>&1; then
 fi
 
 # Check ssh authentication if USE_SSH is present
-if [ -n "${USE_SSH}" ]; then
+if [ -n "${USE_SSH:-}" ]; then
   if ! command -v ssh 1>/dev/null 2>&1; then
     echo "pyenv: configuration USE_SSH found but ssh is not installed, can't continue." >&2
     exit 1
@@ -60,7 +60,7 @@ if [ -n "${USE_SSH}" ]; then
   fi
 fi
 
-if [ -n "${USE_SSH}" ]; then
+if [ -n "${USE_SSH:-}" ]; then
   GITHUB="git@github.com:"
 else
   GITHUB="https://github.com/"
