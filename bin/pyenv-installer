@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-# Ensure $HOME is set.
-if [ -z ${HOME+x} ]; then
-  printf "%s\n" \
-    "Error: \$HOME must be set." \
-    "It is unset when running in a non-login shell (such as in cloud-init)," \
-    "so you may have to set it manually (typically to \"/root\")." \
-    >&2
-  exit 1
-fi
-
 set -e
 [ -n "$PYENV_DEBUG" ] && set -x
 
 if [ -z "$PYENV_ROOT" ]; then
+  if [ -z "$HOME" ]; then
+    printf "$0: %s\n" \
+      "Either \$PYENV_ROOT or \$HOME must be set to determine the install location." \
+      >&2
+    exit 1
+  fi
   export PYENV_ROOT="${HOME}/.pyenv"
 fi
 

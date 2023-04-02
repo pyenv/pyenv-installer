@@ -4,6 +4,12 @@ set -e
 [ -n "$PYENV_DEBUG" ] && set -x
 
 if [ -z "$PYENV_ROOT" ]; then
+  if [ -z "$HOME" ]; then
+    printf "$0: %s\n" \
+      "Either \$PYENV_ROOT or \$HOME must be set to determine the install location." \
+      >&2
+    exit 1
+  fi
   PYENV_ROOT="${HOME}/.pyenv"
 fi
 
