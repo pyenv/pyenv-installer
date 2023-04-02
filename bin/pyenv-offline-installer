@@ -53,7 +53,6 @@ tar -xf "$PYENV_PACKAGE_ARCHIVE" -C "$TMP_DIR"
 
 conditional_mv "$TMP_DIR/pyenv"            "${PYENV_ROOT}"
 conditional_mv "$TMP_DIR/pyenv-doctor"     "${PYENV_ROOT}/plugins/pyenv-doctor"
-conditional_mv "$TMP_DIR/pyenv-installer"  "${PYENV_ROOT}/plugins/pyenv-installer"
 conditional_mv "$TMP_DIR/pyenv-update"     "${PYENV_ROOT}/plugins/pyenv-update"
 conditional_mv "$TMP_DIR/pyenv-virtualenv" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
 

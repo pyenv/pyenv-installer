@@ -42,7 +42,6 @@ fi
 # checkout to temporary directory.
 checkout "${GITHUB}pyenv/pyenv.git"            "$TMP_DIR"
 checkout "${GITHUB}pyenv/pyenv-doctor.git"     "$TMP_DIR"
-checkout "${GITHUB}pyenv/pyenv-installer.git"  "$TMP_DIR"
 checkout "${GITHUB}pyenv/pyenv-update.git"     "$TMP_DIR"
 checkout "${GITHUB}pyenv/pyenv-virtualenv.git" "$TMP_DIR"
 
