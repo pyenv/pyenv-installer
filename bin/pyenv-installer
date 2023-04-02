@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
-set -eu
-[ -n "${PYENV_DEBUG:-}" ] && set -x
+# Ensure $HOME is set.
+if [ -z ${HOME+x} ]; then
+  printf "%s\n" \
+    "Error: \$HOME must be set." \
+    "It is unset when running in a non-login shell (such as in cloud-init)," \
+    "so you may have to set it manually (typically to \"/root\")." \
+    >&2
+  exit 1
+fi
 
-if [ -z "${PYENV_ROOT:-}" ]; then
+set -e
+[ -n "$PYENV_DEBUG" ] && set -x
+
+if [ -z "$PYENV_ROOT" ]; then
   export PYENV_ROOT="${HOME}/.pyenv"
 fi
 
@@ -38,7 +48,7 @@ if ! command -v git 1>/dev/null 2>&1; then
 fi
 
 # Check ssh authentication if USE_SSH is present
-if [ -n "${USE_SSH:-}" ]; then
+if [ -n "${USE_SSH}" ]; then
   if ! command -v ssh 1>/dev/null 2>&1; then
     echo "pyenv: configuration USE_SSH found but ssh is not installed, can't continue." >&2
     exit 1
@@ -60,7 +70,7 @@ if [ -n "${USE_SSH:-}" ]; then
   fi
 fi
 
-if [ -n "${USE_SSH:-}" ]; then
+if [ -n "${USE_SSH}" ]; then
   GITHUB="git@github.com:"
 else
   GITHUB="https://github.com/"
@@ -68,7 +78,6 @@ fi
 
 checkout "${GITHUB}pyenv/pyenv.git"            "${PYENV_ROOT}"                           "${PYENV_GIT_TAG:-master}"
 checkout "${GITHUB}pyenv/pyenv-doctor.git"     "${PYENV_ROOT}/plugins/pyenv-doctor"      "master"
-checkout "${GITHUB}pyenv/pyenv-installer.git"  "${PYENV_ROOT}/plugins/pyenv-installer"   "master"
 checkout "${GITHUB}pyenv/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-update"      "master"
 checkout "${GITHUB}pyenv/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"  "master"
 
