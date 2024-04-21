@@ -37,6 +37,7 @@ If you need, ``export USE_SSH`` to use ``git@github.com``(SSH pseudo-URL) instea
 
 Update:
 ~~~~
+
 .. code:: bash
 
     pyenv update
