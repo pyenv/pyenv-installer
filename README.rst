@@ -29,7 +29,7 @@ If you wish to install a specific release of Pyenv rather than the latest head, 
 
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
-After installing, follow `these instructions <https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv>`_ to set up your shell environment.
+After installing, follow `these instructions <https://github.com/pyenv/pyenv#b-set-up-your-shell-environment-for-pyenv>`_ to set up your shell environment.
 
 You can now begin using pyenv.
 
@@ -56,7 +56,7 @@ then remove these three lines from ``.bashrc``:
 
 .. code:: bash
 
-    export PATH="$HOME/.pyenv/bin:$PATH"
+    export PATH="HOME/.pyenv/bin:HOME/.pyenv/bin:PATH"
     eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 
