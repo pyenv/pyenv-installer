@@ -35,7 +35,7 @@ failed_checkout() {
 }
 
 checkout() {
-  [ -d "$2" ] || git -c advice.detachedHead=0 clone --branch "$3" --depth 1 "$1" "$2" || failed_checkout "$1"
+  [ -d "$2" ] || git -c advice.detachedHead=0 -c core.autocrlf=false clone --branch "$3" --depth 1 "$1" "$2" || failed_checkout "$1"
 }
 
 if ! command -v git 1>/dev/null 2>&1; then
