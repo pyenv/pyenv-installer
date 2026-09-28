@@ -35,7 +35,13 @@ failed_checkout() {
 }
 
 checkout() {
-  [ -d "$2" ] || git -c advice.detachedHead=0 -c core.autocrlf=false clone --branch "$3" --depth 1 "$1" "$2" || failed_checkout "$1"
+  if [ ! -d "$2" ]; then
+    # Force symlink materialization even when the host gitconfig sets
+    # core.symlinks=false (same pattern as core.autocrlf=false). Persist
+    # locally so later `pyenv update` pulls keep checking out symlinks.
+    git -c advice.detachedHead=0 -c core.autocrlf=false -c core.symlinks=true clone --branch "$3" --depth 1 "$1" "$2" || failed_checkout "$1"
+    git -C "$2" config core.symlinks true
+  fi
 }
 
 if ! command -v git 1>/dev/null 2>&1; then
