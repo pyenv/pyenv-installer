@@ -84,14 +84,29 @@ checkout "${GITHUB}pyenv/pyenv-update.git"     "${PYENV_ROOT}/plugins/pyenv-upda
 checkout "${GITHUB}pyenv/pyenv-virtualenv.git" "${PYENV_ROOT}/plugins/pyenv-virtualenv"  "master"
 
 if ! command -v pyenv 1>/dev/null; then
-  { echo
-    colorize 1 "WARNING"
-    echo ": seems you still have not added 'pyenv' to the load path."
-    echo
-  } >&2
+  # The installer runs in bash, which sets $SHELL from the user's passwd entry if it isn't set.
+  login_shell="${SHELL##*/}"
 
-  { # Without args, `init` commands print installation help
-    "${PYENV_ROOT}/bin/pyenv" init || true
-    "${PYENV_ROOT}/bin/pyenv" virtualenv-init || true
+  if [ -n "$login_shell" ] &&
+     echo "pyenv: login shell detected as $login_shell" >&2 &&
+     "${PYENV_ROOT}/bin/pyenv" init --install "$login_shell"; then
+    { echo
+      echo "Restart your shell for the changes to take effect."
+      echo
+    } >&2
+  else
+    { echo
+      colorize 1 "WARNING"
+      echo ": seems you still have not added 'pyenv' to the load path."
+      echo
+    } >&2
+
+    { # Without `-`, `init` prints installation help
+      "${PYENV_ROOT}/bin/pyenv" init ${login_shell:+"$login_shell"} || true
+    } >&2
+  fi
+
+  { # Without args, `virtualenv-init` prints installation help
+    "${PYENV_ROOT}/bin/pyenv" virtualenv-init ${login_shell:+"$login_shell"} || true
   } >&2
 fi
